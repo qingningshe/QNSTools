@@ -10,6 +10,8 @@ public class QNSIntent {
 	private Class<?> to;
 	private Bundle data;
 	private int requestCode = -1;
+	private int enterAnim;
+	private int exitAnim;
 
 	public QNSIntent() {
 		intent = new Intent();
@@ -26,7 +28,7 @@ public class QNSIntent {
 	}
 
 	public QNSIntent data(Bundle data) {
-		this.data=data;
+		this.data = data;
 		return this;
 	}
 
@@ -36,7 +38,8 @@ public class QNSIntent {
 	}
 
 	public QNSIntent anim(int enterAnim, int exitAnim) {
-		from.overridePendingTransition(enterAnim, exitAnim);
+		this.enterAnim = enterAnim;
+		this.exitAnim = exitAnim;
 		return this;
 	}
 
@@ -52,6 +55,10 @@ public class QNSIntent {
 				from.startActivity(intent);
 			} else {
 				from.startActivityForResult(intent, requestCode);
+			}
+
+			if (enterAnim > 0 && exitAnim > 0) {
+				from.overridePendingTransition(enterAnim, exitAnim);
 			}
 		}
 	}

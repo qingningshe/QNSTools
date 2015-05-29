@@ -27,12 +27,12 @@ public abstract class QNSFragment extends Fragment implements OnClickListener{
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		init(view);
+		init();
 		super.onViewCreated(view, savedInstanceState);
 	}
 
-	private void init(View rootView) {
-		findViews(rootView);
+	private void init() {
+		findViews();
 		setListener();
 		initData();
 	}
@@ -79,7 +79,7 @@ public abstract class QNSFragment extends Fragment implements OnClickListener{
 	
 	public abstract int getLayoutId();
 
-	public abstract void findViews(View rootView);
+	public abstract void findViews();
 
 	public abstract void setListener();
 
